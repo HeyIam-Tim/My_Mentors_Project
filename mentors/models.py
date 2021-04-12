@@ -1,3 +1,4 @@
+# pylint: disable=E1101
 from django.db import models
 
 
@@ -10,3 +11,7 @@ class MyMentor(models.Model):
 
     def __str__(self):
         return self.mentor_name
+
+    @property
+    def imageUrl(self):
+        return self.image.url

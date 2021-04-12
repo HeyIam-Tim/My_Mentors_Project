@@ -1,40 +1,21 @@
 {% extends 'mentors/base.html' %}
 
+{% load static %}
 {% block title %}My Mentors{% endblock title %}
 
 {% block content %}
     <div class="index">
         <h2>My Mentors</h2>
-        <p>*A Thank You letter for all my programming teachers.</p>
-        <div class="flex fd-col">
-            <div class="card">
-                <div class="flex fd-row jc-sb">
-                    <img src="/static/dennis.jpeg" alt="dennis" style="border-radius: 50%; width: 100px;">
-                    <div class="name_link">
-                        <h3>Dennis Ivanov</h3>
-                        <a href="https://twitter.com/dennisivy11?s=09"><i class="fab fa-twitter"></i></a>
-                        <a href="https://youtube.com/c/DennisIvy"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <h3>this is a card2</h3>
-            </div>
-            <div class="card">
-                <h3>this is a card3</h3>
-            </div>
+        <p>*A Thank You letter to my programming teachers.</p>
+        <br>
+        <div id="mentor_list" class="flex fd-col">
         </div>
 
         <div class="flex fd-col">
-            <div class="card">
-                <h3>this is a card</h3>
-            </div>
-            <div class="card">
-                <h3>this is a card2</h3>
-            </div>
-            <div class="card">
-                <h3>this is a card3</h3>
-            </div>
+
         </div>
     </div>
+
+    <script src="{% static 'js/mentor_index.js' %}"></script>
+
 {% endblock content %}
