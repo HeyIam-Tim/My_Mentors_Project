@@ -85,16 +85,11 @@ WSGI_APPLICATION = 'my_mentors.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd58u5jktcccgb8',
-        'USER': 'rfqarbyiulajbp',
-        'PASSWORD': 'ff4ed649498f2b5486b1f10a39237d6a7d9562c63c008601bc627458acf098a4',
-        'HOST': 'ec2-34-225-103-117.compute-1.amazonaws.com',
-        'PORT': 5432,
-    }
-}
+
+
+# database
+
+
 
 # data
 # DATABASES = {
@@ -159,9 +154,11 @@ class MediaStorage(S3Boto3Storage):
   location = 'static/images'
   file_overwrite = False
 
-AWS_ACCESS_KEY_ID = 'AKIA47C6AR75ECSBQCEL'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'ribbon-bucket'
+
+
+
+
+# s3bucket credentials
 
 # AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
