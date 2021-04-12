@@ -143,30 +143,33 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 # s3 bucket setup
 
-from storages.backends.s3boto3 import S3Boto3Storage
+# from storages.backends.s3boto3 import S3Boto3Storage
 
-class MediaStorage(S3Boto3Storage):
-  location = 'static/images'
-  file_overwrite = False
+# class MediaStorage(S3Boto3Storage):
+#   location = 'static/images'
+#   file_overwrite = False
 
-AWS_ACCESS_KEY_ID = 'AKIA47C6AR75ECSBQCEL'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'ribbon-bucket'
+# AWS_ACCESS_KEY_ID = 'AKIA47C6AR75ECSBQCEL'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'ribbon-bucket'
 
 # AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 # AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_LOCATION = 'static'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# AWS_LOCATION = 'static'
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
 
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
-DEFAULT_FILE_STORAGE = 'my_mentors.settings.MediaStorage'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+# DEFAULT_FILE_STORAGE = 'my_mentors.settings.MediaStorage'

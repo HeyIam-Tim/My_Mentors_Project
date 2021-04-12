@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
-# class IndexPage()
+class IndexPage(TemplateView):
+    template_name = 'mentors/index.html'
+
+
