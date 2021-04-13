@@ -12,6 +12,6 @@ class MyMentor(models.Model):
     def __str__(self):
         return self.mentor_name
 
-    @property
-    def imageUrl(self):
-        return self.image.url
+    # @property
+    # def imageUrl(self):
+    #     return self.image.url
