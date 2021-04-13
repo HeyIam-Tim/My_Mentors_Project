@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'my_mentors.wsgi.application'
 
 
 
-# database
+# database here
 
 
 
@@ -158,7 +158,7 @@ class MediaStorage(S3Boto3Storage):
 
 
 
-# s3bucket credentials
+# s3bucket credentials here
 
 # AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
