@@ -12,6 +12,11 @@ class MyMentor(models.Model):
     def __str__(self):
         return self.mentor_name
 
-    # @property
-    # def imageUrl(self):
-    #     return self.image.url
+
+class YourLetter(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+    text = models.TextField(blank=True, null=True, max_length=1500)
+
+    def __str__(self):
+        return self.name

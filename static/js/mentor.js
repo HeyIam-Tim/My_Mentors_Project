@@ -36,3 +36,38 @@ let mentorsArray = () => {
 }
 
 mentorsArray()
+
+
+let letterArray = () => {
+    let ty_letters = document.querySelector('#ty_letters');
+    url = '/letter_list/'
+    fetch(url)
+    .then(resp => resp.json())
+    .then((data) => {
+        console.log('DATA', data)
+
+        for (letter of data) {
+            eachLetter = `
+            <div class="card">
+                <div class="flex fd-row jc-fs">
+                    <div class="mentor_image">
+                        <img src="/static/${letter.image}" alt="mentor_photo">
+                    </div>
+                    <div class="name_link">
+                        <h3>${letter.name}</h3>
+                        <p>${letter.text}</p>
+                        <div class="flex fd-row jc-fs">
+                            <a href="" id="update" class="button">Edit</a>
+                            <a href="" id="del" class="button">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+            ty_letters.innerHTML += eachLetter
+        }
+    })
+}
+
+letterArray()
+console.log('fromletter')

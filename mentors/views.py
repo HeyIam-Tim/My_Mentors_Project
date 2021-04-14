@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
 
-from .models import MyMentor
-from .serializers import MyMentorSerializer
+from .models import MyMentor, YourLetter
+from .serializers import MyMentorSerializer, YourLetterSerializer
 
 
 class IndexPage(TemplateView):
@@ -22,18 +22,23 @@ class MentorListAPI(APIView):
         return Response(serializer.data)
 
 
-class MentorDetail(APIView):
-    """
-    Retrieve, update or delete a snippet instance.
-    """
-    def get_object(self, pk):
-        try:
-            return MyMentor.objects.get(pk=pk)
-        except MyMentor.DoesNotExist:
-            raise Http404
+# class MentorDetail(APIView):
+#     def get_object(self, pk):
+#         try:
+#             return MyMentor.objects.get(pk=pk)
+#         except MyMentor.DoesNotExist:
+#             raise Http404
 
-    def get(self, request, pk, format=None):
-        mentor = self.get_object(pk)
-        serializer = MyMentorSerializer(mentor)
+#     def get(self, request, pk, format=None):
+#         mentor = self.get_object(pk)
+#         serializer = MyMentorSerializer(mentor)
+#         return Response(serializer.data)
+
+
+class LetterListAPI(APIView):
+    def get(self, request, format=None):
+        letters = YourLetter.objects.all()
+        serializer = YourLetterSerializer(letters, many=True)
         return Response(serializer.data)
+
 
