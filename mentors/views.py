@@ -16,29 +16,33 @@ class IndexPage(TemplateView):
 
 
 class MentorListAPI(APIView):
+    """
+        retrieves all mymentors and output them
+    """
     def get(self, request, format=None):
         mentors = MyMentor.objects.all()
         serializer = MyMentorSerializer(mentors, many=True)
         return Response(serializer.data)
 
 
-# class MentorDetail(APIView):
-#     def get_object(self, pk):
-#         try:
-#             return MyMentor.objects.get(pk=pk)
-#         except MyMentor.DoesNotExist:
-#             raise Http404
-
-#     def get(self, request, pk, format=None):
-#         mentor = self.get_object(pk)
-#         serializer = MyMentorSerializer(mentor)
-#         return Response(serializer.data)
-
-
 class LetterListAPI(APIView):
+    """
+        retrieves all youtletters and output them, or create a new yourletter
+    """
     def get(self, request, format=None):
         letters = YourLetter.objects.all()
         serializer = YourLetterSerializer(letters, many=True)
         return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = YourLetterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CreateYourLetterPage(TemplateView):
+    template_name = 'mentors/create_letter.html'
 
 
