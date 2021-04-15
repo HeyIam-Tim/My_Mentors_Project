@@ -1,6 +1,7 @@
 # pylint: disable=E1101
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -10,6 +11,7 @@ from django.http import Http404
 
 from .models import MyMentor, YourLetter
 from .serializers import MyMentorSerializer, YourLetterSerializer
+from .forms import YourLetterForm
 
 
 class IndexPage(TemplateView):
@@ -40,12 +42,16 @@ class LetterListAPI(APIView):
         serializer = YourLetterSerializer(data=request.data)
         print('SERIALIZ', serializer)
         if serializer.is_valid():
-            serializer.save()
+            # serializer.save()
+            serializer.save(
+                image=request.data['image']
+            )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class CreateYourLetterPage(TemplateView):
+class CreateYourLetterPage(CreateView):
+    form_class = YourLetterForm
     template_name = 'mentors/create_letter.html'
 
 

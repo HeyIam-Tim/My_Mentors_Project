@@ -6,12 +6,14 @@
         <input multiple value="" type="file" accept="*" name="image" id="image" enctype="multipart/form-data">
         <textarea name="text" id="text" cols="30" rows="10"></textarea>
         <button id="clickMe">click</button> -->
-        <form action="" id="letterForm" method="post" class="flex fd-col">
+        <!-- <form action="" id="letterForm" name="letterForm" method="post" class="flex fd-col"> -->
+            <!-- {{form}} -->
+            <!-- {% csrf_token %} -->
             <input type="text" id="name">
             <input multiple value="" type="file" accept="*" name="image" id="image" enctype="multipart/form-data">
             <textarea name="text" id="text" cols="30" rows="10"></textarea>
-            <input type="submit" value="click">
-        </form>
+            <input id="clickcklick" type="submit" value="click">
+        <!-- </form> -->
     </div>
     <script src="{% static 'js/letter.js' %}"></script>
 {% endblock content %}

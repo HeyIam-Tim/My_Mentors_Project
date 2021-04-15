@@ -1,7 +1,7 @@
 console.log('letters')
 
-// let createLetter = (name, image, text) => {
-let createLetter = (letter) => {
+let createLetter = (name, image, text) => {
+// let createLetter = (letter) => {
 
     // get csrf token
     function getCookie(name) {
@@ -31,8 +31,8 @@ let createLetter = (letter) => {
             // 'Content-Type':'multipart/form-data',
             'X-CSRFToken':csrftoken,
         },
-        // body: JSON.stringify({'name': name, 'image': image, 'text': text,})
-        body: JSON.stringify(letter)
+        body: JSON.stringify({'name': name, 'image': image, 'text': text,})
+        // body: JSON.stringify(letter)
     })
     .then(resp => resp.json())
     .then(data => {
@@ -41,12 +41,18 @@ let createLetter = (letter) => {
 }
 
 
-let letterForm = document.querySelector('#letterForm');
+// let letterForm = document.querySelector('#letterForm');
+let clickcklick = document.querySelector('#clickcklick');
+// let data = new FormData(letterForm)
+// console.log('DATATATAA :', data)
 
-letterForm.addEventListener('submit', function(event) {
-    // let name = document.querySelector('#name').value;
-    // let text = document.querySelector('#text').value;
-    // let image = document.querySelector('#image').value;
+// letterForm.addEventListener('submit', function(event) {
+clickcklick.addEventListener('click', function() {
+    let name = document.querySelector('#name').value;
+    let text = document.querySelector('#text').value;
+    let image = document.querySelector('#image').value;
+    // let imagefile = document.querySelector('#image').files[0];
+    // let image = setValue(imagefile);
     // inputElement.onchange = function(event) {
     //     var image = inputElement.files;
     //     //TODO do something with fileList.  
@@ -56,12 +62,16 @@ letterForm.addEventListener('submit', function(event) {
     // let text = document.querySelector('#text').value;
     // console.log('NAME: ', name, 'IMAGE: ', image, 'TEXT: ', text)
 
-    // createLetter(name, image, text)
+    createLetter(name, image, text)
     // createLetter(image)
 
-    event.preventDefault();
-    let letter = new FormData(this);
-    createLetter(letter)
+    // event.preventDefault();
+    // let letterForm = document.querySelector('#letterForm');
+// 
+    // let letter = new FormData(letterForm);
+    // let letter = new FormData({});
+    // console.log('LETTER: ', letter)
+    // createLetter(letter)
 
 })
 
