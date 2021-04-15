@@ -1,7 +1,7 @@
 console.log('letters')
 
-let createLetter = (name, image, text) => {
-
+// let createLetter = (name, image, text) => {
+let createLetter = (letter) => {
 
     // get csrf token
     function getCookie(name) {
@@ -28,9 +28,11 @@ let createLetter = (name, image, text) => {
         method: 'POST',
         headers: {
             'Content-Type':'application/json',
+            // 'Content-Type':'multipart/form-data',
             'X-CSRFToken':csrftoken,
         },
-        body: JSON.stringify({'name': name, 'image': image, 'text': text,})
+        // body: JSON.stringify({'name': name, 'image': image, 'text': text,})
+        body: JSON.stringify(letter)
     })
     .then(resp => resp.json())
     .then(data => {
@@ -39,15 +41,27 @@ let createLetter = (name, image, text) => {
 }
 
 
-let letterButton = document.querySelector('#clickMe');
+let letterForm = document.querySelector('#letterForm');
 
-letterButton.addEventListener('click', function() {
-    let name = document.querySelector('#name').value;
-    let image = document.querySelector('#image').value;
-    let text = document.querySelector('#text').value;
-    console.log('NAME: ', name, 'IMAGE: ', image, 'TEXT: ', text)
+letterForm.addEventListener('submit', function(event) {
+    // let name = document.querySelector('#name').value;
+    // let text = document.querySelector('#text').value;
+    // let image = document.querySelector('#image').value;
+    // inputElement.onchange = function(event) {
+    //     var image = inputElement.files;
+    //     //TODO do something with fileList.  
+    //     console.log('NAME: ', name, 'IMAGE: ', image, 'TEXT: ', text)
+    //  }
+    // let image = document.querySelector('#image').value;
+    // let text = document.querySelector('#text').value;
+    // console.log('NAME: ', name, 'IMAGE: ', image, 'TEXT: ', text)
 
     // createLetter(name, image, text)
-    createLetter(name, text)
+    // createLetter(image)
+
+    event.preventDefault();
+    let letter = new FormData(this);
+    createLetter(letter)
+
 })
 

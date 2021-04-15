@@ -15,7 +15,7 @@ class MyMentor(models.Model):
 
 class YourLetter(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    image = models.ImageField(upload_to='static/images', max_length=255, blank=True, null=True)
+    image = models.ImageField(max_length=255, blank=True, null=True)
     text = models.TextField(blank=True, null=True, max_length=1500)
 
     def __str__(self):

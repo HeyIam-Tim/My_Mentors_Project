@@ -6,12 +6,11 @@ from .models import MyMentor, YourLetter
 class MyMentorSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyMentor
-        fields = '__all__'
+        fields = '__all__' 
 
 
 class YourLetterSerializer(serializers.ModelSerializer):
-    # image = Base64ImageField(max_length=None, use_url=True)
+    image = serializers.ImageField(max_length=None, use_url=True)
     class Meta:
         model = YourLetter
-        # fields = '__all__'
-        fields = ('id', 'name', 'text')
+        fields = '__all__'

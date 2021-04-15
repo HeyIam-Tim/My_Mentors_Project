@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.parsers import MultiPartParser, FormParser
 from django.http import Http404
 
 from .models import MyMentor, YourLetter
@@ -29,6 +30,7 @@ class LetterListAPI(APIView):
     """
         retrieves all youtletters and output them, or create a new yourletter
     """
+    parser_classes = (MultiPartParser, FormParser)
     def get(self, request, format=None):
         letters = YourLetter.objects.all()
         serializer = YourLetterSerializer(letters, many=True)
@@ -36,6 +38,7 @@ class LetterListAPI(APIView):
 
     def post(self, request, format=None):
         serializer = YourLetterSerializer(data=request.data)
+        print('SERIALIZ', serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
