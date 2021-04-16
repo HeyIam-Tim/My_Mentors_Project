@@ -38,7 +38,6 @@ class LetterListAPI(APIView):
 
     def post(self, request, format=None):
         serializer = YourLetterSerializer(data=request.data)
-        print('SERIALIZ', serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -47,5 +46,35 @@ class LetterListAPI(APIView):
 
 class CreateYourLetterPage(TemplateView):
     template_name = 'mentors/create_letter.html'
+ 
+
+class EditYourLetterAPI(APIView):
+    """
+        Edit and delete a yourletter instance.
+    """
+    def get_object(self, pk):
+        try:
+            return YourLetter.objects.get(id=pk)
+        except YourLetter.DoesNotExist:
+            raise Http404
+             
+    def put(self, request, pk, format=None):
+        letter = self.get_object(pk)
+        serializer = YourLetterSerializer(letter, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        letter = self.get_object(pk)
+        letter.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class EditYourLetterPage(TemplateView):
+    template_name = 'mentors/edit_letter.html'
+
+
+class DeleteYourLetterPage(TemplateView):
+    template_name = 'mentors/delete_letter.html'

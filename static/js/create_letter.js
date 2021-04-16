@@ -1,7 +1,6 @@
 console.log('letters')
 
 let createLetter = (data) => {
-
     // get csrf token
     function getCookie(name) {
         let cookieValue = null;
@@ -31,14 +30,14 @@ let createLetter = (data) => {
     .then(resp => resp.json())
     .then(data => {
         console.log('DATA', data)
+        location.href = '/';
     })
 }
 
 
 let submitBtn = document.querySelector('#submitBtn');
 
-submitBtn.addEventListener('click', function(event) {
-    event.preventDefault();
+submitBtn.addEventListener('click', () => {
     let name = document.querySelector('#name').value;
     let text = document.querySelector('#text').value;
     let image = document.querySelector('#image').files[0];
@@ -49,6 +48,5 @@ submitBtn.addEventListener('click', function(event) {
     data.append('text', text)
 
     createLetter(data)
-    
 })
 

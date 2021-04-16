@@ -1,0 +1,10 @@
+<!-- {% extends 'mentors/base.html' %} -->
+{% load static %}
+<!-- {% block content %} -->
+delete letter 
+<input type="hidden" name="letter_id" id="letter_id" value="{{pk}}">
+<a href="{% url 'index' %}">back</a>
+<div class="button" id="delete">delete</div>
+<script src="{% static 'js/delete_letter.js' %}"></script>
+<!-- {% endblock content %} -->
+

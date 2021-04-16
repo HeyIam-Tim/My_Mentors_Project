@@ -57,8 +57,8 @@ let letterArray = () => {
                         <h3>${letter.name}</h3>
                         <p>${letter.text}</p>
                         <div class="flex fd-row jc-fs">
-                            <a href="" id="update" class="button">Edit</a>
-                            <a href="" id="del" class="button">Delete</a>
+                            <a href="/edit_letter/${letter.id}" id="update" class="button">Edit</a>
+                            <a href="/delete_letter/${letter.id}" id="del" class="button">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -70,4 +70,5 @@ let letterArray = () => {
 }
 
 letterArray()
-console.log('fromletter')
+
+
