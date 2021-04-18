@@ -72,9 +72,10 @@ class EditYourLetterAPI(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class EditYourLetterPage(TemplateView):
-    template_name = 'mentors/edit_letter.html'
+# class EditYourLetterPage(TemplateView):
+#     template_name = 'mentors/edit_letter.html'
 
 
-class DeleteYourLetterPage(TemplateView):
-    template_name = 'mentors/delete_letter.html'
+# class DeleteYourLetterPage(TemplateView):
+#     template_name = 'mentors/delete_letter.html'
+
