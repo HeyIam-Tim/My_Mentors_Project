@@ -61,7 +61,7 @@ class EditYourLetterAPI(APIView):
             raise Http404
              
     def put(self, request, pk, format=None):
-        letter = self.get_object(pk)
+        letter = self.get_object(pk)             
         serializer = YourLetterSerializer(letter, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -74,12 +74,17 @@ class EditYourLetterAPI(APIView):
         return Response('deleted')
 
 
-# class EditYourLetterPage(TemplateView):
-#     template_name = 'mentors/edit_letter.html'
 class EditYourLetterPage(UpdateView):
     model = YourLetter
     fields = '__all__'
     template_name = 'mentors/edit_letter.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        letter = YourLetter.objects.get(id=pk)
+        context['letter'] = letter
+        return context
 
 
 class DeleteYourLetterPage(TemplateView):

@@ -1,10 +1,8 @@
 console.log('EDITPAGE')
-// letter_id = document.querySelector('#letter_id').value;
-letter_id = document.querySelector('.letter_id')
-console.log('PK: ', letter_id)
+
+
 let editLetter = (data) => {
-    // letter_id = document.querySelector('#letter_id').value;
-    console.log('ID: ', letter_id)
+    letter_id = document.querySelector('#letter_id').value;
     // get csrf token
     function getCookie(name) {
         let cookieValue = null;
@@ -34,15 +32,12 @@ let editLetter = (data) => {
     .then(resp => resp.json())
     .then((data) => {
         console.log('DATA11: ', data)
-        location.href = '/';
+        // location.href = '/';
     })
 }
 
 let submitBtn = document.querySelector('#submitBtn');
 submitBtn.addEventListener('click', () => {
-    // let name = document.querySelector('#name').value;
-    // let text = document.querySelector('#text').value;
-    // let image = document.querySelector('#image').files[0];
     let name = document.querySelector('#id_name').value;
     let text = document.querySelector('#id_text').value;
     let image = document.querySelector('#id_image').files[0];
@@ -54,3 +49,4 @@ submitBtn.addEventListener('click', () => {
 
     editLetter(data)
 })
+
