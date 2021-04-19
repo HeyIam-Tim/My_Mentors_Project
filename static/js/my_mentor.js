@@ -44,8 +44,6 @@ let letterArray = () => {
     fetch(url)
     .then(resp => resp.json())
     .then((data) => {
-        console.log('DATA', data)
-
         for (letter of data) {
             eachLetter = `
             <div class="card">
@@ -70,5 +68,6 @@ let letterArray = () => {
 }
 
 letterArray()
+
 
 
