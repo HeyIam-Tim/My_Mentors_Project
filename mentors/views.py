@@ -1,7 +1,7 @@
 # pylint: disable=E1101
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -44,7 +44,9 @@ class LetterListAPI(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class CreateYourLetterPage(TemplateView):
+class CreateYourLetterPage(CreateView):
+    model = YourLetter
+    fields = '__all__'
     template_name = 'mentors/create_letter.html'
  
 
@@ -69,10 +71,14 @@ class EditYourLetterAPI(APIView):
     def delete(self, request, pk, format=None):
         letter = self.get_object(pk)
         letter.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response('deleted')
 
 
-class EditYourLetterPage(TemplateView):
+# class EditYourLetterPage(TemplateView):
+#     template_name = 'mentors/edit_letter.html'
+class EditYourLetterPage(UpdateView):
+    model = YourLetter
+    fields = '__all__'
     template_name = 'mentors/edit_letter.html'
 
 

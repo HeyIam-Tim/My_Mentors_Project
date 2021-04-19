@@ -1,11 +1,11 @@
 {% extends 'mentors/base.html' %}
 {% load static %}
 {% block content %}
-    <input type="hidden" name="letter_id" id="letter_id" value="{{pk}}">
-    <input type="text" name="name" id="name">
+    <input type="hidden" name="letter_id" id="letter_id" class="letter_id" value="{{pk}}">
+    <!-- <input type="text" name="name" id="name">
     <input type="file" name="image" id="image">
-    <input type="text" name="text" id="text">
+    <input type="text" name="text" id="text"> -->
+    {{form.as_p}}
     <input type="submit" id="submitBtn" value="Save Changes">
-    
-    <script src="{% static 'js/edit_letter.js' %}"></script>
+    <script src="{% static 'js/edit_letter1.js' %}"></script>
 {% endblock content %}

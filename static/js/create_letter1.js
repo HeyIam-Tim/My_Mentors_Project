@@ -38,9 +38,12 @@ let createLetter = (data) => {
 let submitBtn = document.querySelector('#submitBtn');
 
 submitBtn.addEventListener('click', () => {
-    let name = document.querySelector('#name').value;
-    let text = document.querySelector('#text').value;
-    let image = document.querySelector('#image').files[0];
+    // let name = document.querySelector('#name').value;
+    // let text = document.querySelector('#text').value;
+    // let image = document.querySelector('#image').files[0];
+    let name = document.querySelector('#id_name').value;
+    let text = document.querySelector('#id_text').value;
+    let image = document.querySelector('#id_image').files[0];
 
     let data = new FormData();
     data.append('image', image)

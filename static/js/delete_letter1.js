@@ -27,14 +27,17 @@ let deleteLetter = (letter_id) => {
             'X-CSRFToken':csrftoken,
         },
     })
+    .then(resp => resp.json())
+    .then((data) => {
+        console.log('deletedata: ', data)
+        location.href = '/';
+    })
 }
 
 let deleteBtn = document.querySelector('#delete');
 deleteBtn.addEventListener('click', () => {
     letter_id = document.querySelector('#letter_id').value;
     deleteLetter(letter_id)
-    window.location.replace('/');
-
 })
 
 

@@ -1,8 +1,10 @@
 console.log('EDITPAGE')
-
-
+// letter_id = document.querySelector('#letter_id').value;
+letter_id = document.querySelector('.letter_id')
+console.log('PK: ', letter_id)
 let editLetter = (data) => {
-    letter_id = document.querySelector('#letter_id').value;
+    // letter_id = document.querySelector('#letter_id').value;
+    console.log('ID: ', letter_id)
     // get csrf token
     function getCookie(name) {
         let cookieValue = null;
@@ -38,9 +40,12 @@ let editLetter = (data) => {
 
 let submitBtn = document.querySelector('#submitBtn');
 submitBtn.addEventListener('click', () => {
-    let name = document.querySelector('#name').value;
-    let text = document.querySelector('#text').value;
-    let image = document.querySelector('#image').files[0];
+    // let name = document.querySelector('#name').value;
+    // let text = document.querySelector('#text').value;
+    // let image = document.querySelector('#image').files[0];
+    let name = document.querySelector('#id_name').value;
+    let text = document.querySelector('#id_text').value;
+    let image = document.querySelector('#id_image').files[0];
 
     let data = new FormData();
     data.append('name', name)
