@@ -52,16 +52,16 @@ class CreateYourLetterPage(CreateView):
 
 class EditYourLetterAPI(APIView):
     """
-        Edit and delete a yourletter instance.
+        Edit and delete a yourletter instance. 
     """
     def get_object(self, pk):
         try:
             return YourLetter.objects.get(id=pk)
         except YourLetter.DoesNotExist:
-            raise Http404
+            raise Http404 
              
     def put(self, request, pk, format=None):
-        letter = self.get_object(pk)             
+        letter = self.get_object(pk)
         serializer = YourLetterSerializer(letter, data=request.data)
         if serializer.is_valid():
             serializer.save()

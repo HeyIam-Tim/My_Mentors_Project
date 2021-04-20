@@ -1,13 +1,23 @@
 {% extends 'mentors/base.html' %}
 {% load static %}
 {% block content %}
-<form action="">
-    
-</form>
+<form id="editForm" action="" >
     <input type="hidden" name="letter_id" id="letter_id" value="{{letter.id}}">
+    <!-- <input type="file" name="imageLetter" files={{letter.image}} value={{letter}} id="imageLetter"> -->
     {{form.as_p}}
-    <input type="submit" id="submitBtn" value="Save Changes">
-    <script src="{% static 'js/edit_letter2.js' %}"></script>
+    <input type="search" id="submitBtn" value="Save Changes">
+</form>
+
+<!-- <form id="formLetter" action="">
+    {{letter.name}} -->
+    
+    <!-- <img src="/static/images/{{ letter.image }}" alt=""> -->
+    <!-- <img src="{{ letter.image.url }}" alt="">
+     {{letter.text}} -->
+    <!-- <input type="range" name="btnLetter" id="btnLetter" value="btnLetter">
+</form>  -->
+
+    <script src="{% static 'js/edit_letter3.js' %}"></script>
 {% endblock content %}
 
 
