@@ -44,9 +44,7 @@ class LetterListAPI(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class CreateYourLetterPage(CreateView):
-    model = YourLetter
-    fields = '__all__'
+class CreateYourLetterPage(TemplateView):
     template_name = 'mentors/create_letter.html'
  
 
@@ -62,6 +60,10 @@ class EditYourLetterAPI(APIView):
              
     def put(self, request, pk, format=None):
         letter = self.get_object(pk)
+        image = letter.image
+        if 'image' not in request.data: #if no image set an established one
+            request.data._mutable = True
+            request.data['image'] = image
         serializer = YourLetterSerializer(letter, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -74,17 +76,21 @@ class EditYourLetterAPI(APIView):
         return Response('deleted')
 
 
-class EditYourLetterPage(UpdateView):
-    model = YourLetter
-    fields = '__all__'
-    template_name = 'mentors/edit_letter.html'
+# class EditYourLetterPage(UpdateView):
+#     model = YourLetter
+#     fields = '__all__'
+#     template_name = 'mentors/edit_letter.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        pk = self.kwargs.get(self.pk_url_kwarg)
-        letter = YourLetter.objects.get(id=pk)
-        context['letter'] = letter
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         pk = self.kwargs.get(self.pk_url_kwarg)
+#         letter = YourLetter.objects.get(id=pk)
+#         context['letter'] = letter
+#         return context
+
+
+class EditYourLetterPage(TemplateView):
+    template_name = 'mentors/edit_letter.html'
 
 
 class DeleteYourLetterPage(TemplateView):

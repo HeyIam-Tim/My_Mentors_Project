@@ -10,7 +10,7 @@ class MyMentorSerializer(serializers.ModelSerializer):
 
 
 class YourLetterSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(max_length=None, use_url=True)
+    image = serializers.ImageField(default='defaulPic.png')
     class Meta:
         model = YourLetter
         fields = '__all__'

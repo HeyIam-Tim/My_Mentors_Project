@@ -1,6 +1,12 @@
 {% extends 'mentors/base.html' %}
 {% load static %}
 {% block content %}
+<div class="flex fd-col">
+    <input type="text" name="name" id="name" required>
+    <textarea name="text" id="text" cols="30" rows="10" required></textarea>
+    <input type="file" name="image" id="image">
+    <input id="submitBtn" type="submit" value="Create">
+</div>
 <form id="editForm" action="" >
     <input type="hidden" name="letter_id" id="letter_id" value="{{letter.id}}">
     <!-- <input type="file" name="imageLetter" files={{letter.image}} value={{letter}} id="imageLetter"> -->
@@ -17,7 +23,7 @@
     <!-- <input type="range" name="btnLetter" id="btnLetter" value="btnLetter">
 </form>  -->
 
-    <script src="{% static 'js/edit_letter3.js' %}"></script>
+    <script src="{% static 'js/edit_letter4.js' %}"></script>
 {% endblock content %}
 
 

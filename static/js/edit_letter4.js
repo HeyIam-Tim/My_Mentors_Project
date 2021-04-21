@@ -42,7 +42,7 @@ submitBtn.addEventListener('click', () => {
     // e.preventDefault()
     let name = document.querySelector('#id_name').value;
     let text = document.querySelector('#id_text').value;
-    // let image = document.querySelector('#id_image').files[0];
+    let image = document.querySelector('#id_image').files[0];
     // console.log('IMAAGEE: ', image)
 
     // let data = new FormData();
@@ -51,8 +51,8 @@ submitBtn.addEventListener('click', () => {
     // data.append('image', image)
     // console.log('APPENDEDFORM: ', data)
 
-    let testHref = document.querySelector('a').src;
-    let testImage = new File([''], `${testHref}`, {type:'image/jpeg'})
+    // let testHref = document.querySelector('a').src;
+    // let testImage = new File([''], `${testHref}`, {type:'image/jpeg'})
     
 
     // let editForm = document.querySelector('#editForm')
@@ -62,10 +62,16 @@ submitBtn.addEventListener('click', () => {
 
 
     let data = new FormData();
-    data.append('name', name)
-    data.append('text', text)
-    // data.append('image', image)
-    data.append('image', testImage)
+
+    if (image === undefined) {
+        data.append('name', name)
+        data.append('text', text)
+    }else{
+        data.append('image', image)
+        data.append('name', name)
+        data.append('text', text)
+    }
+    // data.append('image', testImage)
 
     editLetter(data)
 

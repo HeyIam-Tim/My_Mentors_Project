@@ -36,20 +36,42 @@ let createLetter = (data) => {
 
 
 let submitBtn = document.querySelector('#submitBtn');
+let formCreate = document.querySelector('#formCreate');
 
-submitBtn.addEventListener('click', () => {
-    // let name = document.querySelector('#name').value;
-    // let text = document.querySelector('#text').value;
-    // let image = document.querySelector('#image').files[0];
-    let name = document.querySelector('#id_name').value;
-    let text = document.querySelector('#id_text').value;
-    let image = document.querySelector('#id_image').files[0];
+// submitBtn.addEventListener('click', () => {
+// submitBtn.addEventListener("submit", function(e){
+formCreate.addEventListener("submit", function(e){
+    e.preventDefault();
+    // returnToPreviousPage();
+    let name = document.querySelector('#name').value;
+    let text = document.querySelector('#text').value;
+    let image = document.querySelector('#image').files[0];
+    let data = new FormData()
 
-    let data = new FormData();
-    data.append('image', image)
-    data.append('name', name)
-    data.append('text', text)
+    if (name && text != '') {
+        data.append('text', text)
+        data.append('name', name)
+    
+        if (image === undefined) { // if no image don't supply it
+            console.log('image: ', image)
+        }else{
+            data.append('image', image)
+        }
+    
+        createLetter(data)
 
-    createLetter(data)
+    }
+
+    // let data = new FormData()
+    // data.append('text', text)
+    // data.append('name', name)
+
+    // if (image === undefined) { // if no image don't supply it
+    //     console.log('image: ', image)
+    // }else{
+    //     data.append('image', image)
+    // }
+
+    // createLetter(data)
 })
 

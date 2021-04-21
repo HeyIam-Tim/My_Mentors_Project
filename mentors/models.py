@@ -17,7 +17,6 @@ class YourLetter(models.Model):
     name = models.CharField(max_length=255, null=True)
     image = models.ImageField(max_length=255, null=False, blank=False)
     text = models.TextField(null=True, max_length=1500)
-    default_image = models.ImageField(default='defaultPic.png', max_length=255, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

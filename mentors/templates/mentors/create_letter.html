@@ -1,13 +1,12 @@
 {% extends 'mentors/base.html' %}
 {% load static %}
 {% block content %}
-    <div class="flex fd-col">
-        <!-- <input type="text" name="name" id="name">
-        <input type="file" accept="image/*" name="image" id="image">
-        <textarea name="text" id="text" cols="30" rows="10"></textarea> -->
-        {{form.as_p}}
-        <input id="submitBtn" type="submit" value="Create">
-    </div>
-    <script src="{% static 'js/create_letter1.js' %}"></script>
+    <form action="" id="formCreate" class="flex fd-col">
+        <input type="text" name="name" id="name" required>
+        <textarea name="text" id="text" cols="30" rows="10" required></textarea>
+        <input type="file" name="image" id="image">
+        <input class="button" type="submit" value="Create">
+    </form>
+    <script src="{% static 'js/create_letter2.js' %}"></script>
 {% endblock content %}
 
