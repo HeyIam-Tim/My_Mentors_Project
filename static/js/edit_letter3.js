@@ -71,35 +71,4 @@ submitBtn.addEventListener('click', () => {
 
 })
 
-// let testHref = document.querySelector('a').innerHTML;
-// let testImage = new File([''], `${testHref}`, {})
-// console.log('testImage: ', testImage)
-
-// document.querySelector('#btnLetter').addEventListener('click', ()=>{
-//     let formLetter = document.forms['formLetter']
-//     // var text = "";
-//     // for (i = 0; i < formLetter.length ;i++) {
-//     //   text += formLetter.elements[i].src;
-//     //   console.log('TEXT: ', text)
-//     // }
-//     console.log('formLetter: ', formLetter.src)
-// })
-
-
-// let image = document.querySelector('#id_image').files
-// document.querySelector('#id_image').files[0] = 
-// console.log('CHANGEDIMAGE: ', image)
-
-
-// let imageLetter = document.querySelector('#imageLetter').files
-// console.log('imageLetter: ', imageLetter)
-
-// let defaultImage = document.querySelector('#id_default_image').files;
-// console.log('defaultImage: ', defaultImage)
-
-
-// let editForm = document.querySelector('#editForm')
-// console.log('EDITFORM: ', editForm)
-// let formedit = new FormData(editForm);
-// console.log('FormData: ', formedit)
 
