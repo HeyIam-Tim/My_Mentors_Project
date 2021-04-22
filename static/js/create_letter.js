@@ -1,8 +1,6 @@
-console.log('DELETE')
+console.log('letters')
 
-
-let deleteLetter = (letter_id) => {
-    url = `/edit_letter_api/${letter_id}/`
+let createLetter = (data) => {
     // get csrf token
     function getCookie(name) {
         let cookieValue = null;
@@ -21,26 +19,41 @@ let deleteLetter = (letter_id) => {
     }
     const csrftoken = getCookie('csrftoken');
 
+    url = '/letter_list/'
     fetch(url, {
-        method: 'DELETE',
+        method: 'POST',
         headers: {
             'X-CSRFToken':csrftoken,
         },
+        body: data
     })
     .then(resp => resp.json())
-    .then((data) => {
-        console.log('deletedata: ', data)
+    .then(data => {
+        console.log('DATA', data)
         location.href = '/';
     })
 }
 
-let deleteBtn = document.querySelector('#delete');
-deleteBtn.addEventListener('click', () => {
-    letter_id = document.querySelector('#letter_id').value;
-    deleteLetter(letter_id)
+
+document.querySelector('#formCreate').addEventListener("submit", function(e) {
+    e.preventDefault();
+    let name = document.querySelector('#name').value;
+    let text = document.querySelector('#text').value;
+    let image = document.querySelector('#image').files[0];
+
+    let data = new FormData()
+
+    if (name && text != '') {
+        data.append('text', text)
+        data.append('name', name)
+    
+        if (image != undefined) { // if no image don't supply it
+            data.append('image', image)
+        }
+    
+        createLetter(data)
+
+    }
+
 })
-
-
-
-
 

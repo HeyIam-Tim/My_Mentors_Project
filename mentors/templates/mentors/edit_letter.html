@@ -1,29 +1,29 @@
 {% extends 'mentors/base.html' %}
 {% load static %}
 {% block content %}
-<div class="flex fd-col">
-    <input type="text" name="name" id="name" required>
-    <textarea name="text" id="text" cols="30" rows="10" required></textarea>
-    <input type="file" name="image" id="image">
-    <input id="submitBtn" type="submit" value="Create">
-</div>
-<form id="editForm" action="" >
-    <input type="hidden" name="letter_id" id="letter_id" value="{{letter.id}}">
-    <!-- <input type="file" name="imageLetter" files={{letter.image}} value={{letter}} id="imageLetter"> -->
-    {{form.as_p}}
-    <input type="search" id="submitBtn" value="Save Changes">
-</form>
 
-<!-- <form id="formLetter" action="">
-    {{letter.name}} -->
-    
-    <!-- <img src="/static/images/{{ letter.image }}" alt=""> -->
-    <!-- <img src="{{ letter.image.url }}" alt="">
-     {{letter.text}} -->
-    <!-- <input type="range" name="btnLetter" id="btnLetter" value="btnLetter">
-</form>  -->
+    <section class="cud_letter">
+        <form id="editForm" action="" class="flex fd-col">
+            <input type="hidden" name="letter_id" id="letter_id" value="{{letter.id}}">
+            <div class="inputs flex fd-row">
+                <label for="id_image" class="flex jc-fe">
+                    <img src="{{letter.image.url}}" alt="letter_image"><i class="fas fa-plus-circle fa-3x"></i></i>
+                    {{form.image}}
+                </label>
+                <div class="name_text flex fd-col ai-fs">
+                    {{form.name}}
+                    {{form.text}}
+                </div>
+            </div>
+            <div class="buttons_cta">
+                <a href="{% url 'index' %}" id="backbtn" class="button">Back</a>
+                <input class="button" type="submit" value="Save Changes">
+            </div>
+        </form>
+    </section>
 
-    <script src="{% static 'js/edit_letter4.js' %}"></script>
+    <script src="{% static 'js/edit_letter.js' %}"></script>
+
 {% endblock content %}
 
 

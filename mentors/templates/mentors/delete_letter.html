@@ -1,10 +1,20 @@
-<!-- {% extends 'mentors/base.html' %} -->
+{% extends 'mentors/base.html' %}
 {% load static %}
-<!-- {% block content %} -->
-delete letter 
-<input type="hidden" name="letter_id" id="letter_id" value="{{pk}}">
-<a href="{% url 'index' %}">back</a>
-<div class="button" id="delete">delete</div>
-<script src="{% static 'js/delete_letter1.js' %}"></script>
-<!-- {% endblock content %} -->
+{% block content %}
+
+<section class="cud_letter">
+    <div class="flex fd-col">
+        <input type="hidden" name="letter_id" id="letter_id" value="{{pk}}">
+        <p>Are you sure you want to delete a letter?</p>
+        <br>
+        <div class="buttons_cta">
+            <a href="{% url 'index' %}" id="backbtn" class="button">Back</a>
+            <a class="button" id="delete">Delete</a>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'js/delete_letter.js' %}"></script>
+
+{% endblock content %}
 

@@ -76,8 +76,17 @@ class EditYourLetterAPI(APIView):
         return Response('deleted')
 
 
-class EditYourLetterPage(TemplateView):
+class EditYourLetterPage(UpdateView):
+    form_class = YourLetterForm
+    queryset = YourLetter.objects.all()
     template_name = 'mentors/edit_letter.html'
+
+    def get_context_data(self, **kwargs): #throw a letter into context
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        letter = YourLetter.objects.get(id=pk)
+        context['letter'] = letter
+        return context
 
 
 class DeleteYourLetterPage(TemplateView):

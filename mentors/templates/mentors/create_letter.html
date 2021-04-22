@@ -1,12 +1,25 @@
 {% extends 'mentors/base.html' %}
 {% load static %}
 {% block content %}
-    <form action="" id="formCreate" class="flex fd-col">
-        <input type="text" name="name" id="name" required>
-        <textarea name="text" id="text" cols="30" rows="10" required></textarea>
-        <input type="file" name="image" id="image">
-        <input class="button" type="submit" value="Create">
-    </form>
-    <script src="{% static 'js/create_letter2.js' %}"></script>
+
+    <section class="cud_letter">
+        <form action="" id="formCreate" class="flex fd-col ai-c">
+            <div class="inputs flex fd-row">
+                <label for="image" class="flex jc-fe"><i class="fas fa-user-plus fa-5x"></i></label>
+                <input type="file" name="image" id="image">
+                <div class="name_text flex fd-col ai-fs">
+                    <input type="text" name="name" id="name" placeholder="Name..." required>
+                    <textarea name="text" id="text" rows="7" placeholder="Start typing here..." required></textarea>
+                </div>
+            </div>
+            <div class="buttons_cta">
+                <a href="{% url 'index' %}" id="backbtn" class="button">Back</a>
+                <input class="button" type="submit" value="Save">
+            </div>
+        </form>
+    </section>
+
+    <script src="{% static 'js/create_letter.js' %}"></script>
+
 {% endblock content %}
 

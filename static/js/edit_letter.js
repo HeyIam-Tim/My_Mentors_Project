@@ -32,49 +32,28 @@ let editLetter = (data) => {
     .then(resp => resp.json())
     .then((data) => {
         console.log('DATA11: ', data)
-        // location.href = '/';
+        location.href = '/';
     })
 }
 
-let submitBtn = document.querySelector('#submitBtn');
-submitBtn.addEventListener('click', () => {
-// submitBtn.addEventListener('submit', function(e){
-    // e.preventDefault()
+document.querySelector('#editForm').addEventListener('submit', function(e) {
+    e.preventDefault()
     let name = document.querySelector('#id_name').value;
     let text = document.querySelector('#id_text').value;
     let image = document.querySelector('#id_image').files[0];
-    // console.log('IMAAGEE: ', image)
 
-    // let data = new FormData();
-    // data.append('name', name)
-    // data.append('text', text)
-    // data.append('image', image)
-    // console.log('APPENDEDFORM: ', data)
+    let data = new FormData()
 
-    // let testHref = document.querySelector('a').src;
-    // let testImage = new File([''], `${testHref}`, {type:'image/jpeg'})
+    if (name && text != '') {
+        data.append('text', text)
+        data.append('name', name)
     
-
-    // let editForm = document.querySelector('#editForm')
-    // let data = new FormData(editForm);
-    // data.append('image', testImage)
-    // console.log('SENTDATA: ', data)
-
-
-    let data = new FormData();
-
-    if (image === undefined) {
-        data.append('name', name)
-        data.append('text', text)
-    }else{
-        data.append('image', image)
-        data.append('name', name)
-        data.append('text', text)
+        if (image != undefined) { // if no image don't supply it
+            data.append('image', image)
+        }
+    
+        editLetter(data)
     }
-    // data.append('image', testImage)
-
-    editLetter(data)
-
 })
 
 
