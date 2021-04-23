@@ -159,11 +159,11 @@ MEDIA_URL = '/images/'
 
 # s3 bucket setup
 
-from storages.backends.s3boto3 import S3Boto3Storage
+# from storages.backends.s3boto3 import S3Boto3Storage
 
-class MediaStorage(S3Boto3Storage):
-  location = 'static/images'
-  file_overwrite = False
+# class MediaStorage(S3Boto3Storage):
+#   location = 'static/images'
+#   file_overwrite = False
 
 
 
@@ -183,3 +183,4 @@ class MediaStorage(S3Boto3Storage):
 # AWS_DEFAULT_ACL = None
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 # DEFAULT_FILE_STORAGE = 'my_mentors.settings.MediaStorage'
+
