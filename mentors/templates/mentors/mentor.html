@@ -1,0 +1,41 @@
+{% extends 'mentors/base.html' %}
+{% load static %}
+{% block title %}{{mentor.mentor_name}}{% endblock title %}
+
+{% block content %}
+
+    <div class="mentor">
+        <div style="max-width: 600px;" id="mentor_list" class="flex fd-col">
+            <div class="card">
+                <div class="flex fd-row jc-fs">
+                    <div class="mentor_image">
+                        <img src="{{mentor.image.url}}" alt="mentor_photo">
+                    </div>
+                    <div class="name_link">
+                        <h3>{{mentor.mentor_name}}</h3>
+                        <div class="flex fd-row jc-fs">
+                            <a href="{{mentor.twitter_link}}" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                            <a href="{{mentor.youtube_link}}" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+                            <a href="{% url 'index' %}" style="padding: 3px 13px;" id="backbtn" class="button">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <p>{{mentor.text_body}}</p>
+            <br>
+            {% for course in mentor.course_set.all %}
+                <div class="card">
+                    <p>{{course.custom_id}}</p>
+                    <img src="{{course.thumbnail.url}}" alt="">  
+                    <p>{{course.link}}</p>
+                    <p>{{course.description}}</p>
+                    <br>
+                </div>
+                <br><br>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}
+

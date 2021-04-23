@@ -14,14 +14,18 @@ let mentorsArray = () => {
                <div class="card">
                     <div class="flex fd-row jc-fs">
                         <div class="mentor_image">
-                            <img src="/static/${mentor.image}" alt="mentor_photo">
+                            <a href="/mentor/${mentor.id}/">
+                                <img src="/static/${mentor.image}" alt="mentor_photo">
+                            </a>
                         </div>
                         <div class="name_link">
-                            <h3>${mentor.mentor_name}</h3>
+                            <a href="/mentor/${mentor.id}/">
+                                <h3>${mentor.mentor_name}</h3>
+                            </a>
                             <div class="flex fd-row jc-fs">
                                 <a href="${mentor.twitter_link}" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
                                 <a href="${mentor.youtube_link}" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
-                                <a href="" class="button">View</a>
+                                <a href="/mentor/${mentor.id}/" class="button">View</a>
                             </div>
                         </div>
                     </div>

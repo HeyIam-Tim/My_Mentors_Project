@@ -1,11 +1,12 @@
 {% extends 'mentors/base.html' %}
 {% load static %}
+{% block title %}Delete Letter{% endblock title %}
 {% block content %}
 
 <section class="cud_letter">
     <div class="flex fd-col">
         <input type="hidden" name="letter_id" id="letter_id" value="{{pk}}">
-        <p>Are you sure you want to delete a letter?</p>
+        <p>Are you sure you want to delete the letter?</p>
         <br>
         <div class="buttons_cta">
             <a href="{% url 'index' %}" id="backbtn" class="button">Back</a>

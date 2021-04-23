@@ -1,6 +1,6 @@
 # pylint: disable=E1101
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
 from rest_framework.views import APIView
@@ -25,6 +25,27 @@ class MentorListAPI(APIView):
         mentors = MyMentor.objects.all()
         serializer = MyMentorSerializer(mentors, many=True)
         return Response(serializer.data)
+
+
+
+class EditYourLetterPage(UpdateView):
+    form_class = YourLetterForm
+    queryset = YourLetter.objects.all()
+    template_name = 'mentors/edit_letter.html'
+
+    def get_context_data(self, **kwargs): #throw a letter into context
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        letter = YourLetter.objects.get(id=pk)
+        context['letter'] = letter
+        return context
+
+
+
+class MentorPage(DetailView):
+    model = MyMentor
+    template_name = 'mentors/mentor.html'
+    context_object_name = 'mentor'
 
 
 class LetterListAPI(APIView):
