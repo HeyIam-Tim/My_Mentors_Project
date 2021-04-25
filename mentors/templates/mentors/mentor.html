@@ -25,16 +25,14 @@
             {{mentor.text_body}}
             <br><br>
             {% for course in mentor.course_set.all %}
-                <!-- <div class="card"> -->
-                    <!-- <p>{{course.custom_id}}</p> -->
-                    {{course.custom_id}}
-                    <img src="{{course.thumbnail.url}}" alt="">  
-                    <!-- <p>{{course.link}}</p> -->
-                    {{course.link}}
-                    <!-- <p>{{course.description}}</p> -->
-                    {{course.description}}
-                    <br>
-                <!-- </div> -->
+                <!-- <p>{{course.custom_id}}</p> -->
+                {{course.custom_id}}
+                <img src="{{course.thumbnail.url}}" alt="">  
+                <!-- <p>{{course.link}}</p> -->
+                {{course.link}}
+                <!-- <p>{{course.description}}</p> -->
+                {{course.description}}
+                <br>
                 <br><br>
             {% endfor %}
         </div>
