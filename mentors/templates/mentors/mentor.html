@@ -6,6 +6,8 @@
 
     <div class="mentor">
         <div style="max-width: 600px;" id="mentor_list" class="flex fd-col">
+            <h2>Mentor</h2>
+
             <div class="card">
                 <div class="flex fd-row jc-fs">
                     <div class="mentor_image">
@@ -21,21 +23,28 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="desc">
+
+            <div class="text_body">
                 {{mentor.text_body}}
             </div>
 
+            <br>
+
             {% for course in mentor.course_set.all %}
-                <!-- <p>{{course.custom_id}}</p> -->
-                {{course.custom_id}}
-                <img src="{{course.thumbnail.url}}" alt="">  
-                <!-- <p>{{course.link}}</p> -->
-                {{course.link}}
-                <!-- <p>{{course.description}}</p> -->
-                {{course.description}}
+
+                <div class="course">
+
+                    <a href="{{course.link}}" target="_blank">
+                        <img src="{{course.thumbnail.url}}" alt="course_image">  
+                    </a> 
+
+                    <div class="text_body">
+                        {{course.description}}
+                    </div>
+
+                </div>
                 <br>
-                <br><br>
+
             {% endfor %}
         </div>
     </div>
