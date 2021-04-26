@@ -21,9 +21,11 @@
                     </div>
                 </div>
             </div>
-            <br>
-            {{mentor.text_body}}
-            <br><br>
+            
+            <div class="desc">
+                {{mentor.text_body}}
+            </div>
+
             {% for course in mentor.course_set.all %}
                 <!-- <p>{{course.custom_id}}</p> -->
                 {{course.custom_id}}
