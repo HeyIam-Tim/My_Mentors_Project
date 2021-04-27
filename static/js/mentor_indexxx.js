@@ -25,7 +25,7 @@ let mentorsArray = () => {
                             <div class="flex fd-row jc-fs">
                                 <a href="${mentor.twitter_link}" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
                                 <a href="${mentor.youtube_link}" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
-                                <a href="/mentor/${mentor.id}/" style="margin-bottom:3px" class="button">View</a>
+                                <a href="/mentor/${mentor.id}/" class="button">View</a>
                             </div>
                         </div>
                     </div>

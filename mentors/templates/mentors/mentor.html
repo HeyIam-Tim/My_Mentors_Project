@@ -18,7 +18,7 @@
                         <div class="flex fd-row jc-fs">
                             <a href="{{mentor.twitter_link}}" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
                             <a href="{{mentor.youtube_link}}" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
-                            <a href="{% url 'index' %}" style="padding: 3px 13px;" id="backbtn" class="button">Back</a>
+                            <a href="{% url 'index' %}" style="padding: 3px 13px; margin-bottom:3px" id="backbtn" class="button">Back</a>
                         </div>
                     </div>
                 </div>
@@ -40,6 +40,9 @@
 
                     <div class="text_body">
                         {{course.description}}
+                        <br><br>
+                        The link:  <a href="{{course.link}}" target="_blank">{{course.link}}</a>
+                        <br>
                     </div>
 
                 </div>
