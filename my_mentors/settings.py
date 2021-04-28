@@ -21,13 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '+9rsetc&$u=^deo+&vn7ualu!uoip*n47d*&tdtazomz#x*#j*'
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['my-mentors.herokuapp.com', '127.0.0.1:8000']
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
@@ -80,18 +78,6 @@ WSGI_APPLICATION = 'my_mentors.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'd58u5jktcccgb8',
-#         'USER': 'rfqarbyiulajbp',
-#         'PASSWORD': 'ff4ed649498f2b5486b1f10a39237d6a7d9562c63c008601bc627458acf098a4',
-#         'HOST': 'ec2-34-225-103-117.compute-1.amazonaws.com',
-#         'PORT': 5432,
-#     }
-# }
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -140,8 +126,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-
 # STATIC_URL = '/static/'
 
 # STATICFILES_DIRS = [
@@ -153,18 +137,11 @@ USE_TZ = True
 # MEDIA_URL = '/images/'
 
 
-
 # s3 bucket setup
-
 from storages.backends.s3boto3 import S3Boto3Storage
-
 class MediaStorage(S3Boto3Storage):
   location = 'static/images'
   file_overwrite = False
-
-# AWS_ACCESS_KEY_ID = 'AKIA47C6AR75ECSBQCEL'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'ribbon-bucket'
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
