@@ -8,8 +8,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
 
-from .models import MyMentor, YourLetter
-from .serializers import MyMentorSerializer, YourLetterSerializer
+from .models import MyMentor, YourLetter, Course
+from .serializers import MyMentorSerializer, YourLetterSerializer, CourseSerializer
 from .forms import YourLetterForm
 
 
@@ -27,25 +27,37 @@ class MentorListAPI(APIView):
         return Response(serializer.data)
 
 
-
-class EditYourLetterPage(UpdateView):
-    form_class = YourLetterForm
-    queryset = YourLetter.objects.all()
-    template_name = 'mentors/edit_letter.html'
-
-    def get_context_data(self, **kwargs): #throw a letter into context
-        context = super().get_context_data(**kwargs)
-        pk = self.kwargs.get(self.pk_url_kwarg)
-        letter = YourLetter.objects.get(id=pk)
-        context['letter'] = letter
-        return context
-
-
-
 class MentorPage(DetailView):
     model = MyMentor
     template_name = 'mentors/mentor.html'
     context_object_name = 'mentor'
+
+
+class MentorDetailAPI(APIView):
+    def get_object(self, pk):
+        try:
+            return MyMentor.objects.get(id=pk)
+        except MyMentor.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        mentor = self.get_object(pk)
+        serializer = MyMentorSerializer(mentor)
+        return Response(serializer.data)
+
+
+class MentorCourseListAPI(APIView):
+    def get_object(self, pk):
+        try:
+            return MyMentor.objects.get(id=pk)
+        except MyMentor.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        mentor = self.get_object(pk)
+        course_list = mentor.course_set.all()
+        serializer = CourseSerializer(course_list, many=True)
+        return Response(serializer.data)
 
 
 class LetterListAPI(APIView):
@@ -67,7 +79,20 @@ class LetterListAPI(APIView):
 
 class CreateYourLetterPage(TemplateView):
     template_name = 'mentors/create_letter.html'
- 
+
+
+class EditYourLetterPage(UpdateView):
+    form_class = YourLetterForm
+    queryset = YourLetter.objects.all()
+    template_name = 'mentors/edit_letter.html'
+
+    def get_context_data(self, **kwargs): #throw a letter into context
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        letter = YourLetter.objects.get(id=pk)
+        context['letter'] = letter
+        return context
+
 
 class EditYourLetterAPI(APIView):
     """
@@ -95,19 +120,6 @@ class EditYourLetterAPI(APIView):
         letter = self.get_object(pk)
         letter.delete()
         return Response('deleted')
-
-
-class EditYourLetterPage(UpdateView):
-    form_class = YourLetterForm
-    queryset = YourLetter.objects.all()
-    template_name = 'mentors/edit_letter.html'
-
-    def get_context_data(self, **kwargs): #throw a letter into context
-        context = super().get_context_data(**kwargs)
-        pk = self.kwargs.get(self.pk_url_kwarg)
-        letter = YourLetter.objects.get(id=pk)
-        context['letter'] = letter
-        return context
 
 
 class DeleteYourLetterPage(TemplateView):

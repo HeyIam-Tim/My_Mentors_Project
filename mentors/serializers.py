@@ -1,11 +1,17 @@
 # pylint: disable=E1101
 from rest_framework import serializers
-from .models import MyMentor, YourLetter
+from .models import MyMentor, YourLetter, Course
 
 
 class MyMentorSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyMentor
+        fields = '__all__' 
+
+
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
         fields = '__all__' 
 
 

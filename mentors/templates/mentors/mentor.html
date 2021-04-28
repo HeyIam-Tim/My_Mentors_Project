@@ -4,53 +4,23 @@
 
 {% block content %}
 
-    <div class="mentor">
+    <section class="mentor">
+        <input type="hidden" name="pk_mentor" id="pk_mentor" value="{{mentor.id}}">
         <div style="max-width: 600px;" id="mentor_list" class="flex fd-col">
             <h2>Mentor</h2>
 
-            <div class="card">
-                <div class="flex fd-row jc-fs">
-                    <div class="mentor_image">
-                        <img src="{{mentor.image.url}}" alt="mentor_photo">
-                    </div>
-                    <div class="name_link">
-                        <h3>{{mentor.mentor_name}}</h3>
-                        <div class="flex fd-row jc-fs">
-                            <a href="{{mentor.twitter_link}}" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
-                            <a href="{{mentor.youtube_link}}" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
-                            <a href="{% url 'index' %}" style="padding: 3px 13px; margin-bottom:3px" id="backbtn" class="button">Back</a>
-                        </div>
-                    </div>
-                </div>
+            <div id="card_text_container" class="card_text_container">
+                <!-- Mentor's info goes here -->
             </div>
 
-            <div class="text_body">
-                {{mentor.text_body}}
+            <div id="course_container" class="course_container">
+                <!-- All mentor's course goes here -->
             </div>
 
-            <br>
-
-            {% for course in mentor.course_set.all %}
-
-                <div class="course">
-
-                    <a href="{{course.link}}" target="_blank">
-                        <img src="{{course.thumbnail.url}}" alt="course_image">  
-                    </a> 
-
-                    <div class="text_body">
-                        {{course.description}}
-                        <br><br>
-                        The link:  <a href="{{course.link}}" target="_blank">{{course.link}}</a>
-                        <br>
-                    </div>
-
-                </div>
-                <br>
-
-            {% endfor %}
         </div>
-    </div>
+    </section>
+
+    <script src="{% static 'js/mentor_detail.js' %}"></script>
 
 {% endblock content %}
 
