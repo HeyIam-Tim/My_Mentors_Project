@@ -15,7 +15,7 @@ let mentorsArray = () => {
                     <div class="flex fd-row jc-fs">
                         <div class="mentor_image">
                             <a href="/mentor/${mentor.id}/">
-                                <img src="/static/${mentor.image}" alt="mentor_photo">
+                                <img src="${mentor.image}" alt="mentor_photo">
                             </a>
                         </div>
                         <div class="name_link">
@@ -53,14 +53,14 @@ let letterArray = () => {
             <div class="card">
                 <div class="flex fd-row jc-fs">
                     <div class="mentor_image">
-                        <img src="/static/${letter.image}" alt="mentor_photo">
+                        <img src="${letter.image}" alt="mentor_photo">
                     </div>
                     <div class="name_link">
                         <h3>${letter.name}</h3>
                         <p>${letter.text}</p>
                         <div class="flex fd-row jc-fs">
-                            <a href="/edit_letter/${letter.id}" id="update" class="button">Edit</a>
-                            <a href="/delete_letter/${letter.id}" id="del" class="button">Delete</a>
+                            <a href="/edit_letter/${letter.id}/" id="update" class="button">Edit</a>
+                            <a href="/delete_letter/${letter.id}/" id="del" class="button">Delete</a>
                         </div>
                     </div>
                 </div>

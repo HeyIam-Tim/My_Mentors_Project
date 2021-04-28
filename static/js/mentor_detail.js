@@ -54,7 +54,7 @@ let courseList = (pk_mentor) => {
                     <div class="text_body">
                         ${course.description}
                         <br><br>
-                        The link:  <a href="/${course.link}/" target="_blank">${course.link}</a>
+                        The link:  <a href="${course.link}" target="_blank">${course.link}</a>
                         <br>
                     </div
                 </div>

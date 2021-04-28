@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = '+9rsetc&$u=^deo+&vn7ualu!uoip*n47d*&tdtazomz#x*#j*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['my-mentors.herokuapp.com', '127.0.0.1:8000']
 
 
 # Application definition
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,38 +79,28 @@ WSGI_APPLICATION = 'my_mentors.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd58u5jktcccgb8',
+#         'USER': 'rfqarbyiulajbp',
+#         'PASSWORD': 'ff4ed649498f2b5486b1f10a39237d6a7d9562c63c008601bc627458acf098a4',
+#         'HOST': 'ec2-34-225-103-117.compute-1.amazonaws.com',
+#         'PORT': 5432,
 #     }
 # }
-
 
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd58u5jktcccgb8',
-        'USER': 'rfqarbyiulajbp',
-        'PASSWORD': 'ff4ed649498f2b5486b1f10a39237d6a7d9562c63c008601bc627458acf098a4',
-        'HOST': 'ec2-34-225-103-117.compute-1.amazonaws.com',
-        'PORT': 5432,
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', cast=int),
     }
 }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': config('DB_NAME'),
-#         'USER': config('DB_USER'),
-#         'PASSWORD': config('DB_PASSWORD'),
-#         'HOST': config('DB_HOST'),
-#         'PORT': config('DB_PORT', cast=int),
-#     }
-# }
 
 
 # Password validation
@@ -147,40 +139,42 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static',
+# ]
 
-MEDIA_ROOT = BASE_DIR / 'static/images'
+# MEDIA_ROOT = BASE_DIR / 'static/images'
 
-MEDIA_URL = '/images/'
+# MEDIA_URL = '/images/'
+
+
 
 # s3 bucket setup
 
-# from storages.backends.s3boto3 import S3Boto3Storage
+from storages.backends.s3boto3 import S3Boto3Storage
 
-# class MediaStorage(S3Boto3Storage):
-#   location = 'static/images'
-#   file_overwrite = False
+class MediaStorage(S3Boto3Storage):
+  location = 'static/images'
+  file_overwrite = False
+
+# AWS_ACCESS_KEY_ID = 'AKIA47C6AR75ECSBQCEL'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'ribbon-bucket'
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_LOCATION = 'static'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+DEFAULT_FILE_STORAGE = 'my_mentors.settings.MediaStorage'
 
 
-
-
-
-# s3bucket credentials here
-
-# AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-# AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-# AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
-
-# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-# AWS_LOCATION = 'static'
-# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
-# DEFAULT_FILE_STORAGE = 'my_mentors.settings.MediaStorage'
 
