@@ -12,3 +12,17 @@ The link: https://my-mentors.herokuapp.com/
 
 <img alt='Home page.' src="https://github.com/HeyIam-Tim/My_Mentors_Project/blob/master/static/images/Home-Page.png">
 <br><br><br>
+
+
+## A Thank You section.
+
+<img alt='thankyou-section.' src="https://github.com/HeyIam-Tim/My_Mentors_Project/blob/master/static/images/TY-section.png">
+<br><br><br>
+
+
+## a Mentor's page.
+
+<img alt='detail-page.' src="https://github.com/HeyIam-Tim/My_Mentors_Project/blob/master/static/images/Detail-Page.png">
+<br><br>
+<img alt='detail-page.' src="https://github.com/HeyIam-Tim/My_Mentors_Project/blob/master/static/images/Detail-Page2.png">
+<br><br><br>
