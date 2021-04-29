@@ -29,4 +29,10 @@ A page for each mentor that contains programming content I took to become a code
 <img alt='detail-page.' src="https://github.com/HeyIam-Tim/My_Mentors_Project/blob/master/static/images/Detail-Page2.png">
 <br><br><br>
 
+## An Edit page.
+Here visitors can edit their Thank You letter or letters.
+
+<img alt='edit-page.' src="https://github.com/HeyIam-Tim/My_Mentors_Project/blob/master/static/images/Edit-Page.png">
+<br><br>
+
 
