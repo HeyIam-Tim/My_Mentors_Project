@@ -10,5 +10,5 @@ The link: https://my-mentors.herokuapp.com/
 
 ## Home Page.
 
-<img alt='Home page.' src="https://github.com/HeyIam-Tim/Ribbon-Heroku/blob/master/static/images/index-page.png">
+<img alt='Home page.' src="https://github.com/HeyIam-Tim/My_Mentors_Project/blob/master/static/images/Home-Page.png">
 <br><br><br>
