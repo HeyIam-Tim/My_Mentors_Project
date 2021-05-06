@@ -8,6 +8,9 @@ Additionlly this website contains a section where visitors can leave their own T
 The link: https://my-mentors.herokuapp.com/
 <br><br>
 
+Used technologies: Django, HTML, SASS, Vanilla JavaScript, Django REST Framework, AWS s3 bucket, Postgres, Heroku.
+<br><br>
+
 ## Home Page.
 
 <img alt='Home page.' src="https://github.com/HeyIam-Tim/My_Mentors_Project/blob/master/static/images/Home-Page.png">
@@ -33,6 +36,9 @@ A page for each mentor that contains programming content I took to become a code
 Here visitors can edit their Thank You letter or letters.
 
 <img alt='edit-page.' src="https://github.com/HeyIam-Tim/My_Mentors_Project/blob/master/static/images/Edit-Page.png">
+<br><br>
+
+The link: https://my-mentors.herokuapp.com/
 <br><br>
 
 
